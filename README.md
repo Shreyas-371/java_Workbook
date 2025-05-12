@@ -109,7 +109,3 @@ com.solve_all.java_oops_implementation/
 * [Shreyas](https://github.com/Shreyas-371)
 
 ---
-
-## 📜 License
-
-Open-source project under the [MIT License](LICENSE).
