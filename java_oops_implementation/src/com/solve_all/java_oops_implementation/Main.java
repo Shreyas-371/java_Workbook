@@ -1,5 +1,6 @@
 package com.solve_all.java_oops_implementation;
 
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,43 +10,58 @@ import com.solve_all.java_oops_implementation.service.UserService;
 
 public class Main {
 	
+	private static Scanner scan = new Scanner(System.in);
+	private static UserInterface userInterface = new UserInterface();
+	private static UserService userService = new UserService();
+	private static DriverService driverService = new DriverService();
+	private static DriverInterface driverInterface = new DriverInterface();
+
+	
 	public static void main(String[] args)
 	{
-		System.out.println("hi there");
 		
-		UserService userService = new UserService();
 		userService.addNewUser("shreyas", 1, 23, "male");
 		userService.addNewUser("adesh", 2, 28, "male");
-		
-		System.out.println(userService.findUserById(1));
-		System.out.println(userService.findUserById(2));
-		
-		DriverService driverService = new DriverService();
 		driverService.createNewDriver("vignesh", 1, 32, "male", "car");
+		driverService.createNewDriver("raju", 2, 32, "male", "bike");
 		
-		System.out.println(driverService.findDriverById(1));
+		runner();		
 		
-		System.out.println(userService.rechargeUserWallet(userService.findUserById(1), 10000));
-		
-		CarBookingService carBookingService = new CarBookingService();
-		System.out.println(carBookingService.bookTrip(userService.findUserById(1), "nagar", "pune", 10));
-		
-		System.out.println(driverService.findDriverById(1).isAvailableStatus());
-		
-		Timer timer = new Timer();
-		
-		timer.schedule(new TimerTask() {
-			public void run() {
-				System.out.println(driverService.findDriverById(1).isAvailableStatus());
-				timer.cancel();
+	}
+
+	public static void runner()
+	{
+		System.out.println("hi welcome to the ride hailing app \nplease select your role!!\n"
+				+ "1] User\n"
+				+ "2] Driver\n"
+				+ "3] new User\n"
+				+ "4] new Driver");
+		String userRole = scan.nextLine();
+		if(userRole.equals("user"))
+		{
+			userInterface.launchInterface();
+			runner();
+		}
+		if(userRole.equals("driver"))
+		{
+			driverInterface.launchInterface();
+			runner();
+		}
+		if(userRole.equals("new driver"))
+		{
+			driverInterface.newDriverRegistrationInterface();
+			runner();
+		}
+		if(userRole.equals("new user"))
+		{
+			userInterface.newUserRegistrationInterface();
+			runner();
+		}
+		else 
+			{
+				System.out.println("please enter valid intput option!!!");
+				runner();
 			}
-		}, 1000*11);
-		
-		System.out.println();
-		
-		
-		
-		
 	}
 
 }

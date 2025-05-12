@@ -10,12 +10,12 @@ import com.solve_all.java_oops_implementation.entity.Summary;
 import com.solve_all.java_oops_implementation.entity.User;
 import com.solve_all.java_oops_implementation.repository.DriverRepo;
 
-public class CarBookingService extends Bookable {
+public class BikeBookingService extends Bookable {
 
 	
 	
 	
-	public CarBookingService() {
+	public BikeBookingService() {
 		super();
 	}
 
@@ -23,9 +23,9 @@ public class CarBookingService extends Bookable {
 	public String bookTrip(User user,String source,String destination,int kms)
 	{
 		
-		for(Map.Entry<Driver,Boolean> entry : DriverRepo.getCarDriverList().entrySet())
+		for(Map.Entry<Driver,Boolean> entry : DriverRepo.getBikeDriverList().entrySet())
 		{
-			if(entry.getValue())
+			if(entry.getValue()) 
 			{
 				Timer timer = new Timer();
 				Driver driver = entry.getKey();
@@ -42,7 +42,7 @@ public class CarBookingService extends Bookable {
 					@Override
 					public void run() {
 					entry.getKey().setAvailableStatus(true);
-					entry.setValue(true);
+					entry.setValue(false);
 					timer.cancel();
 					}
 				},1000*kms );
